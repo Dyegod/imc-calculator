@@ -1,9 +1,199 @@
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2201NBDZXL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#68d391" />
+    <meta
+      name="description"
+      content="Calculadora de IMC para acompanhar seu progresso"
+    />
+    <title>Calculadora de IMC</title>
+    <link rel="manifest" href="manifest.json" />
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/chart.js"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@600&display=swap"
+      as="style"
+    />
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+    <link
+      rel="stylesheet"
+      href="styles.css"
+      media="print"
+      onload="this.media='all'"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@600&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png" />
 
-  gtag('config', 'G-2201NBDZXL');
-</script>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-2201NBDZXL"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-2201NBDZXL");
+    </script>
+  </head>
+  <body>
+    <canvas
+      id="particles-canvas"
+      style="position: fixed; top: 0; left: 0; z-index: -1"
+    ></canvas>
+    <div class="container">
+      <header>
+        <h1>Calculadora de IMC</h1>
+        <p>Seu Índice de Massa Corporal</p>
+      </header>
+      <section class="formulario-section">
+        <form id="formulario" aria-labelledby="titulo-formulario">
+          <h2 id="titulo-formulario"><i class="fas fa-user-plus"></i> Dados</h2>
+          <div class="campo-formulario">
+            <label for="peso" title="Peso em kg"
+              ><i class="fas fa-weight"></i> Peso (kg):</label
+            ><input
+              type="number"
+              id="peso"
+              name="peso"
+              placeholder="Ex: 70"
+              step="0.1"
+              min="2"
+              max="500"
+              required
+            />
+          </div>
+          <div class="campo-formulario">
+            <label for="altura" title="Altura em m"
+              ><i class="fas fa-ruler"></i> Altura (m):</label
+            ><input
+              type="number"
+              id="altura"
+              name="altura"
+              placeholder="Ex: 1.75"
+              step="0.01"
+              min="0.2"
+              max="3"
+              required
+            />
+          </div>
+          <div class="campo-formulario">
+            <label for="idade" title="Idade em anos"
+              ><i class="fas fa-calendar"></i> Idade:</label
+            ><input
+              type="number"
+              id="idade"
+              name="idade"
+              placeholder="Ex: 30"
+              min="1"
+              max="120"
+              required
+            />
+          </div>
+          <div class="campo-formulario">
+            <label for="sexo" title="Sexo biológico"
+              ><i class="fas fa-user"></i> Sexo:</label
+            ><select id="sexo" name="sexo" required>
+              <option value="masculino">Masculino</option>
+              <option value="feminino">Feminino</option>
+            </select>
+          </div>
+          <div class="campo-formulario">
+            <label for="atividade" title="Nível de atividade semanal"
+              ><i class="fas fa-running"></i> Atividade:</label
+            ><select id="atividade" name="atividade" required>
+              <option value="1.2">Sedentário</option>
+              <option value="1.375">Leve</option>
+              <option value="1.55" selected>Moderado</option>
+              <option value="1.725">Ativo</option>
+              <option value="1.9">Muito Ativo</option>
+            </select>
+          </div>
+          <button type="submit" aria-label="Calcular IMC">
+            <i class="fas fa-calculator"></i> Calcular
+          </button>
+        </form>
+      </section>
+      <section class="resultado-section" aria-live="polite">
+        <h2><i class="fas fa-chart-line"></i> Resultado</h2>
+        <p id="imc">Seu IMC será exibido aqui.</p>
+      </section>
+      <section id="peso-ideal-section">
+        <h3><i class="fas fa-balance-scale"></i> Peso Ideal</h3>
+        <p id="peso-ideal">Seu peso ideal será exibido aqui.</p>
+      </section>
+      <section id="calorias-section">
+        <h3><i class="fas fa-fire"></i> Calorias</h3>
+        <p id="calorias">Suas calorias serão exibidas aqui.</p>
+        <p id="calorias-ajuste">Ajustes serão exibidos aqui.</p>
+      </section>
+      <section id="faixa-imc-section">
+        <h3><i class="fas fa-tachometer-alt"></i> Faixa</h3>
+        <p id="faixa-imc"></p>
+      </section>
+      <section id="dicas-section">
+        <h3><i class="fas fa-heart"></i> Dicas</h3>
+        <p id="dicas"></p>
+      </section>
+      <section class="historico-section">
+        <h3><i class="fas fa-history"></i> Histórico</h3>
+        <ul id="historico-lista" aria-label="Lista de cálculos"></ul>
+        <button id="clear-history" aria-label="Limpar Histórico">
+          <i class="fas fa-trash"></i> Limpar
+        </button>
+      </section>
+      <section class="grafico-section">
+        <h3><i class="fas fa-chart-bar"></i> Progresso</h3>
+        <div style="position: relative; height: 200px">
+          <canvas id="grafico-imc" aria-label="Gráfico de progresso"></canvas>
+        </div>
+      </section>
+      <section class="adsense-section">
+        <ins
+          class="adsbygoogle"
+          style="display: block; text-align: center; margin-top: 15px"
+          data-ad-client="ca-pub-4046503875922100"
+          data-ad-slot="2704090935"
+          data-ad-format="auto"
+        ></ins>
+      </section>
+    </div>
+    <div id="toast" class="toast"></div>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+    ></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="script.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    <script>
+      if ("serviceWorker" in navigator)
+        navigator.serviceWorker.register("/sw.js");
+    </script>
+  </body>
+</html>
