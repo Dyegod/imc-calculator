@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Página inicial -->
+  <url>
+    <loc>https://imccall.netlify.app/</loc>
+    <lastmod>2025-02-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Página de peso ideal -->
+  <url>
+    <loc>https://imccall.netlify.app/peso-ideal</loc>
+    <lastmod>2025-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Página de calorias -->
+  <url>
+    <loc>https://imccall.netlify.app/calorias</loc>
+    <lastmod>2025-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Página de histórico -->
+  <url>
+    <loc>https://imccall.netlify.app/historico</loc>
+    <lastmod>2025-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Página sobre -->
+  <url>
+    <loc>https://imccall.netlify.app/sobre</loc>
+    <lastmod>2025-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Página de contato -->
+  <url>
+    <loc>https://imccall.netlify.app/contato</loc>
+    <lastmod>2025-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Imagem - exemplo -->
+  <url>
+    <loc>https://imccall.netlify.app/imagens/logo.png</loc>
+    <lastmod>2025-02-24</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- PDF - exemplo -->
+  <url>
+    <loc>https://imccall.netlify.app/documentos/guia-imc.pdf</loc>
+    <lastmod>2025-02-24</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>
